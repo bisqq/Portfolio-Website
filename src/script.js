@@ -10,6 +10,9 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas
+})
 
 let moveForward = false;
 let moveBackward = false;
@@ -51,6 +54,7 @@ const sizes = {
 const camera = new THREE.PerspectiveCamera(50, sizes.width / sizes.height, 0.01, 1000)
 scene.add(camera)
 
+// add locking
 const controls = new PointerLockControls(camera, canvas)
 controls.lock()
 scene.add(controls.getObject())
@@ -109,15 +113,23 @@ window.addEventListener('keydown', (e) => {
   window.addEventListener('click', () => {
     controls.lock()
   })
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    render()
+  })
   
-// Renderer
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
-})
+// Rendering
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+function render() {
+    new OutlineEffect(renderer).render(scene, camera)
+}
 
 const clock = new THREE.Clock();
 const tick = () => {
@@ -157,7 +169,8 @@ const tick = () => {
     }
 
     // Render
-    new OutlineEffect(renderer).render(scene, camera)
+    render()
+
     //renderer.render(scene, camera)
   
     // Call tick again on the next frame
