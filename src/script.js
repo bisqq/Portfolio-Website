@@ -20,7 +20,7 @@ const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial)
 planeMesh.rotateX(-Math.PI / 2)
 //scene.add(planeMesh)
 
-experience.camera.vizualizer.initializeAudio('./popcorn.mp3')
+experience.camera.vizualizer.initializeAudio('./PonDeReplay.mp3')
 
 const clock = new THREE.Clock();
 const tick = () => {
