@@ -1,10 +1,8 @@
-import * as THREE from 'three'
 
 import PlayerControls from './System/PlayerController.js'
 import Camera from './System/Camera.js'
 import Renderer from './System/Renderer.js'
 import Sizes from './Utils/Sizes.js'
-
 import EventEmitter from './Utils/EventEmitter.js'
 
 let instance = null
