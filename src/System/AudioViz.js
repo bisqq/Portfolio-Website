@@ -59,16 +59,19 @@ export default class AudioViz {
     
         for (let x = -25; x <= 25; ++x) {
           const row = []
+          
           for (let y = 0; y < 32; ++y) {
             const speaker = new THREE.Mesh(platformGeo, new THREE.MeshStandardMaterial({color: 0xffffff, emissive: 0x000000}))
             speaker.position.set(0, y * 4, x * 4)
             speakerGroup.add(speaker)
             row.push(speaker)
           }
+
           this.platformMeshes.push(row)
+
         }
+
         platform.add(speakerGroup)
-    
         this.speakerMesh = platform
     }
 
@@ -88,6 +91,7 @@ export default class AudioViz {
             const c = a.clone()
             return c.lerp(b, t)
           })
+
           colourSpline.AddPoint(0.0, new THREE.Color(0x0899AE))
           colourSpline.AddPoint(0.25, new THREE.Color(0x6F238F))
           colourSpline.AddPoint(0.5, new THREE.Color(0x01011D))
