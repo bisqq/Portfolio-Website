@@ -33,7 +33,7 @@ export default class PlayerController {
                     break;
         
                 case 'Space':
-                    if ( this.canJump === true ) this.velocity.y += 350;
+                    if ( this.canJump === true ) this.velocity.y += 250;
                     this.canJump = false;
                     break;
         
@@ -64,8 +64,8 @@ export default class PlayerController {
           })
     }
     playerControls(controls, deltaTime) {
-        this.velocity.x -= this.velocity.x * 10.0 * deltaTime;
-        this.velocity.z -= this.velocity.z * 10.0 * deltaTime;
+        this.velocity.x -= this.velocity.x * 5.0 * deltaTime;
+        this.velocity.z -= this.velocity.z * 5.0 * deltaTime;
     
         this.velocity.y -= 9.8 * 100.0 * deltaTime; // 100.0 = mass
     
