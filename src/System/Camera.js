@@ -1,6 +1,8 @@
 import * as THREE from 'three'
-import Experience from '../Experience.js'
 import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js'
+
+import Experience from '../Experience.js'
+import AudioViz from './AudioViz'
 
 export default class Camera {
     constructor() {
@@ -16,6 +18,7 @@ export default class Camera {
     setInstance() {
         this.instance = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.01, 1000)
         this.scene.add(this.instance)
+        this.vizualizer = new AudioViz(this.instance, this.scene)
     }
 
     setControls() {

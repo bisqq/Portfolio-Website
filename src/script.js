@@ -14,21 +14,25 @@ const mesh = new THREE.Mesh(geometry, material)
 mesh.position.set(0, 10, -10)
 scene.add(mesh)
 
-const planeGeometry = new THREE.PlaneGeometry(2000, 2000)
-const planeMaterial = new THREE.MeshBasicMaterial({color: 0xffff00, side: THREE.DoubleSide})
-const plane = new THREE.Mesh(planeGeometry, planeMaterial)
-plane.position.set(0, 0, 0)
-plane.rotateX(-Math.PI / 2)
-plane.receiveShadow = true
-scene.add(plane)
+const planeGeometry = new THREE.PlaneGeometry(64, 64, 64, 64)
+const planeMaterial = new THREE.MeshNormalMaterial({ wireframe: true })
+const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial)
+planeMesh.rotateX(-Math.PI / 2)
+//scene.add(planeMesh)
+
+experience.camera.vizualizer.initializeAudio('./popcorn.mp3')
 
 const clock = new THREE.Clock();
 const tick = () => {
     let deltaTime = clock.getDelta();
 
     experience.update()
+    
     experience.controller.playerControls(experience.camera.controls, deltaTime)
+    
     experience.emitter.trigger('tick')
+
+    experience.camera.vizualizer.update(deltaTime)
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
