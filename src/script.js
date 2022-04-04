@@ -10,7 +10,8 @@ const experience = new Experience(canvas, scene)
 // Music
 const pon = './PonDeReplay.mp3'
 const popcorn = './popcorn.mp3'
-experience.camera.vizualizer.initializeAudio(popcorn)
+const iAre = './TheWayIAre.mp3'
+experience.camera.vizualizer.initializeAudio(iAre)
 
 // Test Object
 const geometry = new THREE.BoxGeometry(5, 5, 5)
