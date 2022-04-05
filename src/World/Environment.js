@@ -3,9 +3,8 @@ import Experience from '../Experience.js'
 
 export default class Environment {
     
-    constructor() {
-        this.experience = new Experience()
-        this.scene = this.experience.scene
+    constructor(_scene) {
+        this.scene = _scene
 
         this.setEnvironmentLight()
         this.setEnvironmentMap()
@@ -14,9 +13,13 @@ export default class Environment {
     setEnvironmentLight() {
         const light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 0.75)
         light.position.set(0.5, 1, 0.75)
-        scene.add(light)
+        this.scene.add(light)
         
-        scene.background = new THREE.Color( 0xffffff );
+        this.scene.background = new THREE.Color( 0xffffff );
 
+    }
+
+    setEnvironmentMap() {
+        
     }
 }

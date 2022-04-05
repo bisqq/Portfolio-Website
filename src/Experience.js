@@ -4,6 +4,7 @@ import Camera from './System/Camera.js'
 import Renderer from './System/Renderer.js'
 import Sizes from './Utils/Sizes.js'
 import EventEmitter from './Utils/EventEmitter.js'
+import Environment from './World/Environment.js'
 
 let instance = null
 
@@ -25,6 +26,7 @@ export default class Experience {
         this.renderer = new Renderer()
         this.emitter = new EventEmitter()
         this.controller = new PlayerControls()
+        this.environment = new Environment(this.scene)
 
         // Resize event
         this.sizes.on('resize', () => {

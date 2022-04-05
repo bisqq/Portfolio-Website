@@ -111,6 +111,7 @@ export default class AudioViz {
               const freqScale = math.smootherstep((data[remap[i]]/255) ** 0.5, 0, 1)
               const source = 1 + 6 * freqScale + this.noise_.Get(this.indexTimer_, r * 0.42142, i * 0.3455)
 
+              //speakerRow[i].scale.set(source, 1, source) // make it 1x32
               speakerRow[i].scale.set(source, 1, 1)
               speakerRow[i].material.color.copy(colourSpline.Get(freqScale))
               speakerRow[i].material.emissive.copy(colourSpline.Get(freqScale))
