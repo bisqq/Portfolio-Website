@@ -39,8 +39,9 @@ export default class Experience {
         this.renderer.resize()
     }
 
-    update() {
+    update(deltaTime) {
         this.renderer.update()
+        this.camera.vizualizer.update(deltaTime)
     }
 
     destroy() {

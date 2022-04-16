@@ -11,23 +11,22 @@ const experience = new Experience(canvas, scene)
 const pon = './PonDeReplay.mp3'
 const popcorn = './popcorn.mp3'
 const iAre = './TheWayIAre.mp3'
-experience.camera.vizualizer.initializeAudio(iAre)
+//experience.camera.vizualizer.initializeAudio(iAre)
 
-// Test Object
-const geometry = new THREE.BoxGeometry(5, 5, 5)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh = new THREE.Mesh(geometry, material)
-mesh.position.set(0, 10, -10)
-scene.add(mesh)
-
+// Environment
+var loader = new THREE.TextureLoader();
+var material = new THREE.MeshLambertMaterial({ map: loader.load('./images/planet_lava.png')});
+var geometry = new THREE.PlaneGeometry(5120 , 1440);
+var mesh = new THREE.Mesh(geometry, material);
+mesh.position.set(0,0,-2000)
+scene.add(mesh);
 
 // Update Frames
 const clock = new THREE.Clock();
 const tick = () => {
     let deltaTime = clock.getDelta();
 
-    experience.update()
-    experience.camera.vizualizer.update(deltaTime)
+    experience.update(deltaTime)
     
     experience.controller.playerControls(experience.camera.controls, deltaTime)
     experience.emitter.trigger('tick')

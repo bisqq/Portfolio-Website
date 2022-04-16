@@ -28,7 +28,7 @@ export default class AudioViz {
                 this.audio.setLoop(true)
                 this.audio.setVolume(1)
                 this.audio.setRefDistance(100)
-                this.audio.play()
+                //this.audio.play()
                 this.analyzer = new THREE.AudioAnalyser(this.audio, 64)
                 this.analyzerData = []
             }, 2000)

@@ -5,7 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Biscoveanu</title>
 </head>
-<body>
+<body id="bodyContainer">
+    <div id="container">
+        <button class="start-button">Start</button>
+        <img src="../static/images/faceintro.png" class="background">
+    </div>
+    <video id="video-0">
+        <!-- <source src="../static/videos/nameintro.mp4" type="video/mp4"> -->
+        <source src="../static/videos/nameintrov2.mp4" type="video/mp4">
+        video not supported
+    </video>
     <canvas class="webgl"></canvas>
 </body>
+<script>
+    // Events for Entry
+    document.getElementsByClassName('start-button')[0].addEventListener('click', (e) => {
+        e.preventDefault()
+
+        let button = document.getElementsByClassName('start-button')[0].classList.add("fade-out")
+        let background = document.getElementsByClassName('background')[0].classList.add("fade-out")
+
+        setTimeout(() => {
+            document.querySelector('#container').remove()
+        }, 2000)
+
+        setTimeout(() => {
+            document.querySelector('#video-0').play()
+        }, 1000)
+
+        setTimeout(() => {
+            //let video = document.querySelector('#video-0').classList.add("fade-out")
+
+            setTimeout(() => {
+               //document.querySelector('#video-0').remove()
+            }, 5000)// 1 second past the fade out
+
+            document.querySelector('#video-0').remove()
+
+        }, 14000)// 1 second before the video finishes
+       
+    });
+</script>
 </html>

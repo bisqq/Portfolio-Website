@@ -16,7 +16,7 @@ export default class Camera {
     }
 
     setInstance() {
-        this.instance = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.01, 1000)
+        this.instance = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.01, 100000)
         this.scene.add(this.instance)
         this.vizualizer = new AudioViz(this.instance, this.scene)
     }
