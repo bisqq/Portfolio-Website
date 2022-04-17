@@ -40,7 +40,6 @@ export default class Environment {
         this.gltfLoader.load(modelFilePath, (gltf) => {
             this.gltfObject = gltf.scene
             this.gltfObject.position.set(modelPostion.x, modelPostion.y, modelPostion.z)
-            this.gltfObject.scale.set(10.0, 10.0, 10.0)
 
             this.scene.add(this.gltfObject)
         })

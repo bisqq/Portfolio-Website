@@ -1,5 +1,4 @@
 
-import PlayerControls from './System/PlayerController.js'
 import Camera from './System/Camera.js'
 import Renderer from './System/Renderer.js'
 import Sizes from './Utils/Sizes.js'
@@ -25,7 +24,6 @@ export default class Experience {
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.emitter = new EventEmitter()
-        this.controller = new PlayerControls()
         this.environment = new Environment(this.scene)
 
         // Resize event
@@ -39,9 +37,9 @@ export default class Experience {
         this.renderer.resize()
     }
 
-    update(deltaTime) {
+    update() {
         this.renderer.update()
-        this.camera.vizualizer.update(deltaTime)
+       // this.camera.controlsUpdate()
     }
 
     destroy() {

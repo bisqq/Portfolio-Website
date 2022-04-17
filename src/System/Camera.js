@@ -1,8 +1,7 @@
 import * as THREE from 'three'
-import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 import Experience from '../Experience.js'
-import AudioViz from './AudioViz'
 
 export default class Camera {
     constructor() {
@@ -12,21 +11,24 @@ export default class Camera {
         this.canvas = this.experience.canvas
 
         this.setInstance()
-        this.setControls()
+        //this.setControls()
     }
 
     setInstance() {
         this.instance = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.01, 100000)
         this.scene.add(this.instance)
-        this.vizualizer = new AudioViz(this.instance, this.scene)
     }
 
     setControls() {
-        this.controls = new PointerLockControls(this.instance, this.canvas)
+        this.controls = new OrbitControls(this.instance, this.canvas)
+        this.controls.enabled = true
+        this.controls.enablePan = false
+        this.instance.position.set( 0, 20, 100 )
+        this.controls.update()
+    }
 
-        window.addEventListener('click', () => {
-            this.controls.lock()
-        })
+    controlsUpdate() {
+        this.controls.update()
     }
 
     resize() {

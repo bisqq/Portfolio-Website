@@ -6,18 +6,26 @@
     <title>Alex Biscoveanu</title>
 </head>
 <body id="bodyContainer">
+    
     <div id="container">
         <button class="start-button">Start</button>
         <img src="../static/images/faceintro.png" class="background">
     </div>
+    
     <video id="video-0">
         <!-- <source src="../static/videos/nameintro.mp4" type="video/mp4"> -->
         <source src="../static/videos/nameintrov2.mp4" type="video/mp4">
         video not supported
     </video>
-    <canvas class="webgl"></canvas>
+
+    <!-- will use this for "sending data" -->
+    <div id="console"></div>
+
+    <!-- <canvas class="webgl"></canvas> -->
 </body>
 <script>
+    var intervalID
+
     // Events for Entry
     document.getElementsByClassName('start-button')[0].addEventListener('click', (e) => {
         e.preventDefault()
@@ -41,9 +49,69 @@
             }, 5000)// 1 second past the fade out
 
             document.querySelector('#video-0').remove()
+            intervalID = window.setInterval(updateScreen, 200)
 
         }, 14000)// 1 second before the video finishes
        
     });
+
+
+    // console - Need to add Typewriter effect
+    var txt = [
+    "FORCE: XX0022. ENCYPT://000.222.2345",
+    "TRYPASS: ********* AUTH CODE: ALPHA GAMMA: 1___ PRIORITY 1",
+    "RETRY: REINDEER FLOTILLA",
+    "Z:> /NASA/CLASSIFIED/PROJECT_X/ EXECUTE -COMMAND 0",
+    "================================================",
+    "Priority 1 // local / scanning...",
+    "scanning ports...",
+    "BACKDOOR FOUND (23.45.23.12.00000000)",
+    "BACKDOOR FOUND (13.66.23.12.00110000)",
+    "BACKDOOR FOUND (13.66.23.12.00110044)",
+    "...",
+    "...",
+    "BRUTE.EXE -r -z",
+    "...locating vulnerabilities...",
+    "...vulnerabilities found...",
+    "MCP/> DEPLOY CLU",
+    "SCAN: __ 0100.0000.0554.0080",
+    "SCAN: __ 0020.0000.0553.0080",
+    "SCAN: __ 0001.0000.0554.0550",
+    "SCAN: __ 0012.0000.0553.0030",
+    "SCAN: __ 0100.0000.0554.0080",
+    "SCAN: __ 0020.0000.0553.0080",
+    ]
+
+    var console = document.querySelector("#console")
+    var docfrag = document.createDocumentFragment()
+    var isDone = false
+    var counter = 0
+
+    function updateScreen() {
+        //Shuffle the "txt" array
+        txt.push(txt.shift())
+        //Rebuild document fragment
+        txt.forEach(function(e) {
+            var p = document.createElement("p")
+            p.textContent = e
+            docfrag.appendChild(p)
+        });
+        //Clear DOM body
+        while (console.firstChild && !isDone) {
+            console.removeChild(console.firstChild)
+        }
+
+        if (!isDone) {
+            console.appendChild(docfrag)
+            counter++
+        }
+
+        if (counter > 30) {
+            isDone = true
+            clearInterval(intervalID)
+            document.querySelector('#console').innerHTML = ``
+        }
+    }
+
 </script>
 </html>
