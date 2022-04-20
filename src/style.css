@@ -29,6 +29,17 @@ html, body {
     border: none;
 }
 
+h4 {
+    position: absolute;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    top: 50%;
+    left: 12%;
+    background-color: transparent;
+    border: none;
+}
+
 .background {
     float: right;
 }
@@ -57,8 +68,6 @@ html, body {
     opacity: 0;
     transition: 4s;
 }
-
-
 
 p {
     font-family: monospace;
